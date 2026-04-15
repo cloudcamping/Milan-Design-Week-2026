@@ -393,6 +393,38 @@ L.marker([45.4890, 9.2180], { icon: hotelIcon }).addTo(map)
 
 let markerLayer = L.layerGroup().addTo(map);
 let metroLayer = L.layerGroup();
+let routeLayer = L.layerGroup().addTo(map);
+
+function drawRouteToNearestStation(ev) {
+  routeLayer.clearLayers();
+  const stations = nearestStations(ev.coords, 600, 1);
+  if (!stations.length) return;
+  const s = stations[0];
+  const primaryLine = s.lines[0];
+  const meta = METRO_LINES[primaryLine];
+  const color = meta ? meta.color : "#888";
+
+  // Gestrichelte Linie Event → Station
+  L.polyline([ev.coords, s.coords], {
+    color,
+    weight: 3,
+    opacity: 0.9,
+    dashArray: "6, 8",
+    lineCap: "round"
+  }).addTo(routeLayer);
+
+  // Distanz-Label am Mittelpunkt
+  const mid = [(ev.coords[0] + s.coords[0]) / 2, (ev.coords[1] + s.coords[1]) / 2];
+  const label = L.divIcon({
+    html: `<div style="background:${color};color:${primaryLine === 'M3' ? '#000' : '#fff'};padding:2px 7px;border-radius:10px;font-size:10px;font-weight:700;white-space:nowrap;box-shadow:0 2px 6px rgba(0,0,0,.4);border:2px solid #fff;">🚶 ${formatDistance(s.dist)}</div>`,
+    className: "", iconSize: [0, 0], iconAnchor: [0, 0]
+  });
+  L.marker(mid, { icon: label, interactive: false, zIndexOffset: 500 }).addTo(routeLayer);
+}
+
+function clearRoute() {
+  routeLayer.clearLayers();
+}
 
 function buildMetroMarkers() {
   metroLayer.clearLayers();
@@ -435,6 +467,7 @@ function makeMarker(ev) {
     document.getElementById("sheet").classList.remove("open");
   });
   marker.on("popupopen", e => {
+    drawRouteToNearestStation(ev);
     const favBtn = e.popup._contentNode.querySelector(".fav");
     if (favBtn) favBtn.onclick = () => {
       toggleFavorite(ev.id);
@@ -446,6 +479,7 @@ function makeMarker(ev) {
       }, 0);
     };
   });
+  marker.on("popupclose", clearRoute);
   return marker;
 }
 
