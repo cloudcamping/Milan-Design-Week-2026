@@ -4,8 +4,8 @@
   "description": "Fuorisalone 2026 — Events-Map & Navigation",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#1a1a1a",
-  "theme_color": "#1a1a1a",
+  "background_color": "#F9F8FD",
+  "theme_color": "#F9F8FD",
   "orientation": "portrait",
   "icons": [
     {
