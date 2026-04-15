@@ -656,5 +656,599 @@ const EVENTS = [
     days: [20, 21, 22, 23, 24, 25, 26],
     reservation: { required: false, note: "Opening evtl. RSVP" },
     infoLink: "https://www.dezeen.com/eventsguide/2026/04/light-as-medium-milan-2026/"
+  },
+
+  // ============ BRERA — Mode & Luxus (NEU) ============
+  {
+    id: "brera-gucci", name: "Gucci", exhibition: "Gucci Memoria (Demna-Debüt)",
+    venue: "Chiostri di San Simpliciano", address: "Piazza Paolo VI 6",
+    district: "Brera", coords: [45.4745, 9.1870], pin: "G",
+    description: "Demnas Fuorisalone-Debüt als Creative Director · Immersive Inszenierung von 105 Jahren Gucci-Geschichte als lebendiger Organismus · Raum- und Bildschichtung.",
+    days: [21, 22, 23, 24, 25, 26], highDemand: true,
+    reservation: { required: true, note: "Pflicht" }
+  },
+  {
+    id: "brera-dior", name: "Dior Maison", exhibition: "Corolle (Noé Duchaufour-Lawrance)",
+    venue: "Palazzo Landriani", address: "Via Borgonuovo 25",
+    district: "Brera", coords: [45.4712, 9.1890], pin: "D",
+    description: "Neue Lampenkollektion — Muranoglas und Bambusfaser, inspiriert vom Cannage-Motiv + New Look (Lampe als skulpturaler Rock).",
+    days: [20, 21, 22, 23, 24, 25, 26],
+    reservation: { required: false }
+  },
+  {
+    id: "brera-jilsander", name: "Jil Sander × Apartamento", exhibition: "Reference Library",
+    venue: "Via Beltrami Showroom", address: "Via Beltrami",
+    district: "Brera", coords: [45.4715, 9.1865], pin: "J",
+    description: "Pop-up-Bibliothek mit 60 kuratierten Büchern von Simone Bellotti, gestaltet von studioutte · 20.–24.4.",
+    days: [20, 21, 22, 23, 24],
+    reservation: { required: false }
+  },
+  {
+    id: "brera-miumiu", name: "Miu Miu", exhibition: "Literary Club (3. Edition)",
+    venue: "Circolo Filologico Milanese", address: "Via Clerici 10",
+    district: "Brera", coords: [45.4680, 9.1882], pin: "M",
+    description: "Literarischer Salon zu Annie Ernaux und Ama Ata Aidoo.",
+    days: [20, 21, 22, 23, 24, 25, 26],
+    reservation: { required: false, note: "RSVP empfohlen" }
+  },
+  {
+    id: "brera-loropiana", name: "Loro Piana", exhibition: "Studies – Chapter I: On the Plaid",
+    venue: "Cortile della Seta", address: "Via della Moscova 33",
+    district: "Brera", coords: [45.4793, 9.1895], pin: "L",
+    description: "23 Plaid-Studien als eigenständige Designobjekte — Material, Technik, Konstruktion in Variationen von Faser, Garn und Endprodukt.",
+    days: [20, 21, 22, 23, 24, 25, 26],
+    reservation: { required: false }
+  },
+  {
+    id: "brera-valextra", name: "Valextra", exhibition: "Soft & Tender Topographies",
+    venue: "Valextra Showroom", address: "Via Manzoni 3",
+    district: "Brera", coords: [45.4685, 9.1905], pin: "V",
+    description: "Lederdesign trifft Raumgestaltung.",
+    days: [20, 21, 22, 23, 24, 25, 26],
+    reservation: { required: false }
+  },
+
+  // ============ BRERA — Automobil (NEU) ============
+  {
+    id: "brera-bmw", name: "BMW", exhibition: "Vibrant Transitions",
+    venue: "Palazzo Borromeo d'Adda", address: "Via Manzoni 41",
+    district: "Brera", coords: [45.4715, 9.1935], pin: "🚘",
+    description: "Immersive Installation zur Zukunft der Mobilität.",
+    days: [20, 21, 22, 23, 24, 25, 26],
+    reservation: { required: false, note: "10–20 h" }
+  },
+  {
+    id: "brera-mini", name: "MINI × Paul Smith", exhibition: "A Garden of Curiosity",
+    venue: "Palazzo Borromeo d'Adda (Garten)", address: "Via Manzoni 41",
+    district: "Brera", coords: [45.4716, 9.1936], pin: "🪴",
+    description: "Colour Theory Room + Listening Room · neuer MINI Cooper Cabrio Paul Smith Edition (Nottingham Green) + historische Paul-Smith-Minis.",
+    days: [21, 22, 23, 24, 25, 26],
+    reservation: { required: false }
+  },
+  {
+    id: "brera-nio", name: "NIO Firefly", exhibition: "Glow Rod Garage",
+    venue: "Firefly Garage", address: "Via Palermo 8",
+    district: "Brera", coords: [45.4740, 9.1860], pin: "⚡",
+    description: "Chinesische EV-Marke NIO zeigt Sub-Brand Firefly — leuchtende Garage-Experience (Fuorisalone-Debüt).",
+    days: [20, 21, 22, 23, 24, 25, 26],
+    reservation: { required: false }
+  },
+
+  // ============ BRERA — Design/Möbel (NEU Highlights) ============
+  {
+    id: "brera-ingomaurer", name: "Ingo Maurer", exhibition: "Here We YaYaHo Again",
+    venue: "Ingo Maurer Showroom", address: "Via Varese 13",
+    district: "Brera", coords: [45.4790, 9.1770], pin: "💡",
+    description: "Neue Evolution des legendären YaYaHo-Niederspannungs-Lichtsystems.",
+    days: [20, 21, 22, 23, 24, 25, 26],
+    reservation: { required: false }
+  },
+  {
+    id: "brera-preciosa", name: "Preciosa Lighting", exhibition: "Drifting Lights",
+    venue: "Galleria Tempesta", address: "Foro Buonaparte 68",
+    district: "Brera", coords: [45.4715, 9.1810], pin: "✨",
+    description: "60 mundgeblasene Glaspaneele als schwebende Installation.",
+    days: [20, 21, 22, 23, 24, 25, 26],
+    reservation: { required: false }
+  },
+  {
+    id: "brera-laufen", name: "Laufen × Konstantin Grcic", exhibition: "When Time Becomes Material",
+    venue: "Laufen Showroom", address: "Via Manzoni 23",
+    district: "Brera", coords: [45.4700, 9.1915], pin: "L",
+    description: "Bad-/Material-Ausstellung kuratiert von Konstantin Grcic.",
+    days: [20, 21, 22, 23, 24, 25, 26],
+    reservation: { required: false }
+  },
+  {
+    id: "brera-poltronafrau", name: "Poltrona Frau × Shepard Fairey", exhibition: "True Over Time + Dezza 60. Jubiläum",
+    venue: "Poltrona Frau Showroom", address: "Via Manzoni 30",
+    district: "Brera", coords: [45.4708, 9.1920], pin: "P",
+    description: "Neue Kollektionen + Street-Art-Kooperation mit Shepard Fairey · Gio-Ponti-Dezza-Jubiläum.",
+    days: [20, 21, 22, 23, 24, 25, 26],
+    reservation: { required: false }
+  },
+  {
+    id: "brera-flexform", name: "Flexform", exhibition: "The Private Lives of Objects",
+    venue: "Flexform Flagship", address: "Via Moscova 33",
+    district: "Brera", coords: [45.4793, 9.1897], pin: "F",
+    description: "Zwei Installationen im Flagshipstore.",
+    days: [20, 21, 22, 23, 24, 25, 26],
+    reservation: { required: false }
+  },
+
+  // ============ BRERA — Kunst ============
+  {
+    id: "brera-amex-ricciardi", name: "American Express × Sara Ricciardi", exhibition: "Serotonin",
+    venue: "Loggiato, Pinacoteca di Brera", address: "Via Brera 28 (Loggiato)",
+    district: "Brera", coords: [45.4720, 9.1882], pin: "🎈",
+    description: "Riesige aufblasbare Volumina, die Schönheit und Glück als chemische Formeln inszenieren.",
+    days: [20, 21, 22, 23, 24, 25, 26],
+    reservation: { required: false }
+  },
+  {
+    id: "brera-aiweiwei", name: "Ai Weiwei × Rubelli", exhibition: "About Silk",
+    venue: "Rubelli Showroom", address: "Via Fatebenefratelli 9",
+    district: "Brera", coords: [45.4750, 9.1895], pin: "🕊",
+    description: "Ai Weiweis erste Arbeit in Seide · ortsspezifische Goldfaden-Lampas · Motive: Überwachungskameras, Handschellen, Twitter-Vogel, Alpakas · Ai-Weiwei-Sofa · 16.4.–15.5.",
+    days: [20, 21, 22, 23, 24, 25, 26], highDemand: true,
+    reservation: { required: false, note: "evtl. RSVP" }
+  },
+
+  // ============ BRERA — Länderpavillons ============
+  {
+    id: "brera-saudi", name: "Saudi-Arabien", exhibition: "Jusoor Design Collections",
+    venue: "Pinacoteca di Brera", address: "Via Brera 28",
+    district: "Brera", coords: [45.4722, 9.1880], pin: "🇸🇦",
+    description: "5 saudische Designer × int. Partner · Limited-Edition-Sammlerobjekte (Kurator Samer Yamani).",
+    days: [20, 21, 22, 23, 24, 25, 26],
+    reservation: { required: false }
+  },
+  {
+    id: "brera-austria", name: "Österreich", exhibition: "Design Palazzo Austria",
+    venue: "Palazzo Confalonieri", address: "Via Romagnosi 8",
+    district: "Brera", coords: [45.4738, 9.1845], pin: "🇦🇹",
+    description: "10. Teilnahme · 30+ Aussteller · Tiefblau gestaltetes Ausstellungskonzept (Vasku & Klug).",
+    days: [20, 21, 22, 23, 24, 25, 26],
+    reservation: { required: false }
+  },
+  {
+    id: "brera-swiss", name: "Schweiz", exhibition: "Shared Matter",
+    venue: "SPAZIOVENTO", address: "Via Pinamonte da Vimercate 4",
+    district: "Brera", coords: [45.4770, 9.1905], pin: "🇨🇭",
+    description: "Pro Helvetia + Presence Switzerland · Akuto Chord Machine, iiode Re27-LED, Paper Glasses.",
+    days: [20, 21, 22, 23, 24, 25, 26],
+    reservation: { required: false }
+  },
+
+  // ============ TORTONA — NEU ============
+  {
+    id: "tortona-lexus", name: "Lexus", exhibition: "SPACE — Weltpremiere LS Concept",
+    venue: "Superstudio Più", address: "Via Tortona 27",
+    district: "Tortona", coords: [45.4514, 9.1695], pin: "🚗",
+    description: "Weltpremiere Lexus LS Concept + 4 Co-Creation-Werke *Discover Together 2026* (Random Studio Amsterdam, Guardini Ciuffreda u.a.).",
+    days: [21, 22, 23, 24, 25, 26],
+    reservation: { required: false }
+  },
+  {
+    id: "tortona-hyundai", name: "Hyundai", exhibition: "Unfold Stories — Ioniq 3 Weltdebüt",
+    venue: "Torneria Tortona", address: "Via Tortona 32",
+    district: "Tortona", coords: [45.4510, 9.1688], pin: "🚙",
+    description: "Weltdebüt Ioniq 3 (elektrisches Hatchback) · Immersive Designgeschichte + Workshop Sarah Illenberger.",
+    days: [20, 21, 22, 23, 24, 25, 26],
+    reservation: { required: false }
+  },
+  {
+    id: "tortona-fiat", name: "FIAT", exhibition: "Ciao Futuro!",
+    venue: "Magna Pars", address: "Via Tortona 15",
+    district: "Tortona", coords: [45.4520, 9.1720], pin: "🚘",
+    description: "Immersive Zeitreise: Nuova 500 (1957) + Panda (1980er) · Mobilitätsgeschichte als Erlebnis.",
+    days: [20, 21, 22, 23, 24, 25, 26],
+    reservation: { required: false }
+  },
+  {
+    id: "tortona-lotus", name: "Lotus", exhibition: "In Progress",
+    venue: "Opificio 31", address: "Via Tortona 31",
+    district: "Tortona", coords: [45.4512, 9.1694], pin: "🏁",
+    description: "Theory-1-Konzeptfahrzeug + legendärer Type 72 F1-Bolide.",
+    days: [20, 21, 22, 23, 24, 25, 26],
+    reservation: { required: false }
+  },
+  {
+    id: "tortona-mcdonalds", name: "McDonald's × Damien Hirst", exhibition: "POOL – Ti sblocco un ricordo",
+    venue: "POOL-Venue", address: "Via Tortona 58",
+    district: "Tortona", coords: [45.4505, 9.1660], pin: "🍔",
+    description: "Popkultur-Installation zum 40-jährigen Italien-Jubiläum (Kurator Nicolas Ballario) · Werke von Damien Hirst + KI-Zeitmaschine.",
+    days: [20, 21, 22, 23, 24, 25, 26],
+    reservation: { required: false }
+  },
+
+  // ============ INTERNI MATERIAE — Università Statale ============
+  {
+    id: "statale-big-artemide", name: "BIG × Artemide", exhibition: "Light Knot Progression (280 m Licht)",
+    venue: "Università Statale, Loggiato Est", address: "Via Festa del Perdono 7",
+    district: "INTERNI Materiae", coords: [45.4605, 9.1970], pin: "◊",
+    description: "280 Meter Licht in 11 Bögen · Aluminiumknoten + LED-Bänder · Progression von einfach zu komplexen chinesischen Knoten-Mustern.",
+    days: [20, 21, 22, 23, 24, 25, 26],
+    reservation: { required: false, note: "frei · INTERNI MATERIAE" }
+  },
+  {
+    id: "statale-sony", name: "Sony × Setsu & Shinobu Ito", exhibition: "Esquisse",
+    venue: "Università Statale, Aula Magna", address: "Via Festa del Perdono 7",
+    district: "INTERNI Materiae", coords: [45.4607, 9.1972], pin: "◼",
+    description: "Original Blended Material — umweltfreundliches Papier aus Bambus + Zuckerrohr · Möbel und räumliche Elemente.",
+    days: [20, 21, 22, 23, 24, 25, 26],
+    reservation: { required: false }
+  },
+  {
+    id: "statale-mad-canva", name: "MAD Architects × Canva", exhibition: "Kaleido",
+    venue: "Università Statale, Aula Magna", address: "Via Festa del Perdono 7",
+    district: "INTERNI Materiae", coords: [45.4606, 9.1974], pin: "◇",
+    description: "15 m hohe immersive Kaleidoskop-Installation mit KI-gestützten Kreativwerkzeugen.",
+    days: [20, 21, 22, 23, 24, 25, 26],
+    reservation: { required: false }
+  },
+  {
+    id: "statale-sanlorenzo", name: "Sanlorenzo × Piero Lissoni", exhibition: "UN_Material (Yacht SHE 1:1)",
+    venue: "Università Statale, Cortile del '700", address: "Via Festa del Perdono 7",
+    district: "INTERNI Materiae", coords: [45.4604, 9.1972], pin: "⛴",
+    description: "1:1-Querschnitte der Yacht SHE in semi-transparentem Stoff auf schwarzen Metallprofilen · 10 × 21,5 × 6 m · tagsüber Wolke, nachts leuchtender Phantom.",
+    days: [20, 21, 22, 23, 24, 25, 26], highDemand: true,
+    reservation: { required: false }
+  },
+  {
+    id: "statale-holcim-scandurra", name: "Holcim × Alessandro Scandurra", exhibition: "Mater (16 m Kreis aus Bauschutt)",
+    venue: "Università Statale, Cortile d'Onore", address: "Via Festa del Perdono 7",
+    district: "INTERNI Materiae", coords: [45.4605, 9.1973], pin: "○",
+    description: "16-Meter-Kreis aus Bauschutt — Kreislauf der Baumaterialien.",
+    days: [20, 21, 22, 23, 24, 25, 26],
+    reservation: { required: false }
+  },
+  {
+    id: "statale-navone-parmigiano", name: "Parmigiano Reggiano × Paola Navone", exhibition: "I Suoni della Materia",
+    venue: "Università Statale, Cortile d'Onore", address: "Via Festa del Perdono 7",
+    district: "INTERNI Materiae", coords: [45.4606, 9.1973], pin: "🎵",
+    description: "Sensorisches Käse-Instrument — Klang als Materialerfahrung.",
+    days: [20, 21, 22, 23, 24, 25, 26],
+    reservation: { required: false }
+  },
+
+  // ============ DURINI / SAN BABILA — Lighting Mile ============
+  {
+    id: "durini-flos", name: "Flos × Formafantasma", exhibition: "SuperWire",
+    venue: "Flos Showroom / Palazzo Visconti", address: "Corso Monforte 15",
+    district: "Durini", coords: [45.4655, 9.2025], pin: "F",
+    description: "Neue Formafantasma-Kollektion — reduzierte Drahtleuchten · Eines der meistdiskutierten Produkte der Woche.",
+    days: [20, 21, 22, 23, 24, 25, 26], highDemand: true,
+    reservation: { required: false }
+  },
+  {
+    id: "durini-artemide", name: "Artemide × Giulia Foscari", exhibition: "Criosfera",
+    venue: "Artemide Showroom", address: "Corso Monforte 19",
+    district: "Durini", coords: [45.4660, 9.2030], pin: "A",
+    description: "Neue Leuchte Criosfera (Giulia Foscari) · BIG-Kooperation bei Università Statale.",
+    days: [20, 21, 22, 23, 24, 25, 26],
+    reservation: { required: false }
+  },
+  {
+    id: "durini-foscarini", name: "Foscarini", exhibition: "Knitted Light + Allumette",
+    venue: "Foscarini Showroom", address: "Corso Monforte 13",
+    district: "Durini", coords: [45.4658, 9.2028], pin: "◒",
+    description: "Forschung Licht × 3D-Stricktechniken · neue asymmetrische skulpturale Leuchte Allumette.",
+    days: [20, 21, 22, 23, 24, 25, 26],
+    reservation: { required: false }
+  },
+  {
+    id: "durini-bb", name: "B&B Italia", exhibition: "Museale Neuheiten + Portraits",
+    venue: "B&B Italia Store", address: "Via Durini 14",
+    district: "Durini", coords: [45.4630, 9.1970], pin: "B",
+    description: "Museale Indoor/Outdoor-Neuheiten + Dialoge zwischen italienischen Marken und Designlegenden (Superstudio Maxi).",
+    days: [20, 21, 22, 23, 24, 25, 26],
+    reservation: { required: false }
+  },
+  {
+    id: "durini-kartell", name: "Kartell", exhibition: "Outdoor in innovativen Materialien",
+    venue: "Kartell Flagship", address: "Via Carlo Porta 1",
+    district: "Durini", coords: [45.4700, 9.1950], pin: "K",
+    description: "Outdoor-Neuheiten in innovativen Materialien.",
+    days: [20, 21, 22, 23, 24, 25, 26],
+    reservation: { required: false }
+  },
+  {
+    id: "durini-poliform", name: "Poliform", exhibition: "Multitude — neuer Flagship ex-Trussardi",
+    venue: "Piazza della Scala (ex-Palazzo Trussardi)", address: "Piazza della Scala 5",
+    district: "Durini", coords: [45.4673, 9.1895], pin: "P",
+    description: "Immersive Installation eines verborgenen urbanen Gartens · 3-stöckiger neuer Flagship.",
+    days: [20, 21, 22, 23, 24, 25, 26], highDemand: true,
+    reservation: { required: false }
+  },
+  {
+    id: "durini-baxter", name: "Baxter", exhibition: "Baxter Cinema",
+    venue: "Baxter Cinema", address: "Largo Augusto 1",
+    district: "Durini", coords: [45.4630, 9.1950], pin: "🎬",
+    description: "Kinoreifes immersives Showroom-Erlebnis, dreiteilige Präsentation.",
+    days: [20, 21, 22, 23, 24, 25, 26],
+    reservation: { required: false }
+  },
+  {
+    id: "durini-cctapis", name: "CC-Tapis × Fornasetti", exhibition: "(META)FISICA",
+    venue: "CC-Tapis Showroom", address: "Piazza S. Stefano 10",
+    district: "Durini", coords: [45.4615, 9.1930], pin: "C",
+    description: "Handgeknüpfte Teppiche · neue Kollektion mit Fornasetti *(META)FISICA*.",
+    days: [20, 21, 22, 23, 24, 25, 26],
+    reservation: { required: false }
+  },
+  {
+    id: "sanbabila-polypiù", name: "PolyPiù", exhibition: "Luminous Skin (10 leuchtende Türme)",
+    venue: "Piazza San Babila + Corso Europa/Monforte", address: "Piazza San Babila",
+    district: "Durini", coords: [45.4645, 9.1970], pin: "|",
+    description: "10 leuchtende Türme als urbane Installation entlang des Distrikts.",
+    days: [20, 21, 22, 23, 24, 25, 26],
+    reservation: { required: false }
+  },
+  {
+    id: "sanbabila-kaldewei", name: "KALDEWEI × Parasite 2.0", exhibition: "Bubbles of Time",
+    venue: "Palazzo Crespi", address: "Corso Matteotti 1",
+    district: "Durini", coords: [45.4663, 9.1955], pin: "○",
+    description: "Badezimmer-Neuinterpretation mit Parasite 2.0 + Forgotten Architecture.",
+    days: [20, 21, 22, 23, 24, 25, 26],
+    reservation: { required: false }
+  },
+
+  // ============ CENTRO — Mode Quadrilatero (NEU) ============
+  {
+    id: "centro-lv", name: "Louis Vuitton", exhibition: "Objets Nomades + Signature Collection",
+    venue: "Palazzo Serbelloni + neuer Flagship Via Montenapoleone", address: "Corso Venezia 16",
+    district: "Centro", coords: [45.4685, 9.1980], pin: "LV",
+    description: "Debüt komplette LV-Home-Kollektion · Urquiola, Patrick Jouin, Cristián Mohaded · Nendo-Porzellan · Estúdio Campana Tischfußball · Charlotte Perriand *La Maison au Bord de l'Eau*.",
+    days: [20, 21, 22, 23, 24, 25, 26], highDemand: true,
+    reservation: { required: true, note: "Invitation / Appointment" }
+  },
+  {
+    id: "centro-fendi", name: "Fendi Casa", exhibition: "Fendi Design Prize 2026 + cc-tapis-Teppiche",
+    venue: "Fendi Casa", address: "Piazza della Scala (Ecke Via Verdi)",
+    district: "Centro", coords: [45.4673, 9.1893], pin: "F",
+    description: "Fendi Design Prize 2026 + neue Teppichlinie mit cc-tapis.",
+    days: [20, 21, 22, 23, 24, 25, 26],
+    reservation: { required: false, note: "RSVP empfohlen" }
+  },
+  {
+    id: "centro-ferragamo", name: "Ferragamo", exhibition: "Floating Silk Garden",
+    venue: "Ferragamo Boutique", address: "Via Montenapoleone 3",
+    district: "Centro", coords: [45.4688, 9.1945], pin: "F",
+    description: "Schwebende Foulards und Seidenkissen verwandeln Boutique in ätherischen Garten · botanische Prints Seta-Pre-Fall-2026.",
+    days: [20, 21, 22, 23, 24, 25, 26],
+    reservation: { required: false }
+  },
+  {
+    id: "centro-giorgetti", name: "Giorgetti × Maserati", exhibition: "Automotive-Design-Crossover",
+    venue: "Giorgetti (4 Etagen)", address: "Via della Spiga 31",
+    district: "Centro", coords: [45.4705, 9.1960], pin: "G",
+    description: "Neue Kooperation mit Maserati — Automotive-Design-Crossover.",
+    days: [20, 21, 22, 23, 24, 25, 26],
+    reservation: { required: false }
+  },
+  {
+    id: "centro-armanicasa", name: "Giorgio Armani / Armani Casa", exhibition: "Borgonuovo-Spieltisch + Origins & Icons",
+    venue: "Armani Casa Flagship", address: "Corso Venezia 14",
+    district: "Centro", coords: [45.4680, 9.1975], pin: "A",
+    description: "Neue Kollektion + Origins & Icons-Retrospektive.",
+    days: [20, 21, 22, 23, 24, 25, 26],
+    reservation: { required: false }
+  },
+  {
+    id: "centro-issey", name: "Issey Miyake × Ensamble Studio", exhibition: "The Paper Log: Shell and Core",
+    venue: "Issey Miyake Boutique", address: "Via Bagutta 12",
+    district: "Centro", coords: [45.4680, 9.1955], pin: "I",
+    description: "Skulpturale Papierformen aus Faltresten.",
+    days: [20, 21, 22, 23, 24, 25, 26],
+    reservation: { required: false }
+  },
+  {
+    id: "centro-marni", name: "Marni × RedDuo Studio", exhibition: "Modular-Installation + Spritz-Menüs",
+    venue: "Pasticceria Cucchi", address: "Corso Genova 1",
+    district: "Centro", coords: [45.4600, 9.1775], pin: "M",
+    description: "Modular-Installationen, custom Interior, Spritz-Menüs in Mailänder Kult-Pasticceria.",
+    days: [20, 21, 22, 23, 24, 25, 26],
+    reservation: { required: false }
+  },
+  {
+    id: "centro-asics", name: "ASICS × Studio NUOVA", exhibition: "Kinetic Playscape (Fuorisalone-Debüt)",
+    venue: "Garage 21", address: "Garage 21 (Corso di Porta Nuova area)",
+    district: "Centro", coords: [45.4800, 9.1920], pin: "🏃",
+    description: "5 immersive Umgebungen, die an Körperzustände gekoppelt sind.",
+    days: [20, 21, 22, 23, 24, 25, 26],
+    reservation: { required: false }
+  },
+  {
+    id: "centro-bo-antolini", name: "Bang & Olufsen × Antolini", exhibition: "From Quarry to Garden",
+    venue: "Antolini Stoneroom", address: "Piazza Fontana",
+    district: "Centro", coords: [45.4637, 9.1928], pin: "🔊",
+    description: "Preview Outdoor-Speaker Beosound Balance Natura · 16 Limited Custom-Speaker aus Quarz + versteinertem Holz.",
+    days: [20, 21, 22, 23, 24, 25, 26],
+    reservation: { required: false }
+  },
+  {
+    id: "centro-frattini", name: "Gianfranco Frattini 1926–2026", exhibition: "Retrospektive zum 100. Geburtstag",
+    venue: "Castello Sforzesco", address: "Piazza Castello",
+    district: "Centro", coords: [45.4707, 9.1797], pin: "★",
+    description: "Editionen von Artemide, Cassina, CB2, Gubi, Poltrona Frau, Tacchini, Torri Lana.",
+    days: [20, 21, 22, 23, 24, 25, 26],
+    reservation: { required: false }
+  },
+  {
+    id: "centro-dimorestudio", name: "Dimorestudio / Dimoregallery", exhibition: "Neuer Galerieraum + Interni-Venosta",
+    venue: "Palazzo Olivazzi + Via S. Vittore al Teatro 1/3", address: "Via Bigli 21",
+    district: "Centro", coords: [45.4680, 9.1925], pin: "D",
+    description: "Eröffnung neuer zweigeschossiger Galerieraum (ex-Bankgewölbe) + Interni-Venosta-Ausstellung im neoklassizistischen Palazzo.",
+    days: [20, 21, 22, 23, 24, 25, 26],
+    reservation: { required: false }
+  },
+  {
+    id: "centro-tomdixon-hotel", name: "Tom Dixon", exhibition: "Mua Mua Hotel",
+    venue: "Mua Mua Hotel (1929er Chiodi/Gio-Ponti-Gebäude)", address: "Via Aosta 2 (nahe Centrale)",
+    district: "Centro", coords: [45.4870, 9.2005], pin: "🏨",
+    description: "12-Zimmer-Mikrohotel · Vorschau AW26-Leuchten, Möbel, Accessoires.",
+    days: [21, 22, 23, 24, 25, 26],
+    reservation: { required: false, note: "Hotel-Eingang" }
+  },
+  {
+    id: "centro-tomdixon-axis", name: "Tom Dixon × Cosentino", exhibition: "AXIS + Axis Talks",
+    venue: "Casa Manzoni", address: "Via Gerolamo Morone 1",
+    district: "Centro", coords: [45.4680, 9.1905], pin: "X",
+    description: "5 konzeptuelle Räume + neue Axis-Tischkollektion + 8 internationale Designer-Talks · 20.–25.4.",
+    days: [20, 21, 22, 23, 24, 25],
+    reservation: { required: false, note: "RSVP für Talks" }
+  },
+
+  // ============ 5VIE — H&M etc. ============
+  {
+    id: "5vie-hm-wearstler", name: "H&M Home × Kelly Wearstler", exhibition: "Fuorisalone-Debüt beider",
+    venue: "Palazzo Acerbi (Barock-Palazzo 17. Jh.)", address: "Corso di Porta Romana 3",
+    district: "5VIE", coords: [45.4582, 9.1905], pin: "H",
+    description: "13 Schlüsselstücke einer 29-teiligen Kollektion (Modularmöbel, Leuchten, Accessoires in Holz, Metall, Marmor, Keramik) · 21.–26.4.",
+    days: [21, 22, 23, 24, 25, 26], highDemand: true,
+    reservation: { required: false }
+  },
+  {
+    id: "5vie-dongfeng", name: "Dongfeng", exhibition: "Two Natures. Infinite Scapes",
+    venue: "Teatro Alcione", address: "Piazza Vetra 7",
+    district: "5VIE", coords: [45.4595, 9.1820], pin: "🚘",
+    description: "Voyah Passion L + MHero 1 EV-SUV · *Klinge des Lichts* symbolisiert Gleichgewicht zwischen Gegensätzen.",
+    days: [20, 21, 22, 23, 24, 25, 26],
+    reservation: { required: false }
+  },
+  {
+    id: "5vie-bosa-cibic", name: "Bosa × Matteo Cibic", exhibition: "FLORESTA FUTURISTICA (50. Jubiläum)",
+    venue: "Hotel Senato Milano (Garten)", address: "Via Senato 22",
+    district: "5VIE", coords: [45.4685, 9.1995], pin: "🌳",
+    description: "Futuristische Keramikwald-Installation zum 50-jährigen Bosa-Jubiläum.",
+    days: [20, 21, 22, 23, 24, 25, 26],
+    reservation: { required: false }
+  },
+
+  // ============ ISOLA — NEU ============
+  {
+    id: "isola-materially", name: "Materially", exhibition: "The New State of Materials (Panasonic u.v.m.)",
+    venue: "Stecca3", address: "Via G. De Castillia 26",
+    district: "Isola", coords: [45.4845, 9.1908], pin: "⚗",
+    description: "Materialinnovationen · Panasonic, Balena, Caracol AM, Polymaker, Impact Acoustic, SMUSH u.v.m.",
+    days: [20, 21, 22, 23, 24, 25, 26],
+    reservation: { required: true, link: "https://isola.design/rsvp-isoladesignfestival2026", note: "Festival-RSVP" }
+  },
+  {
+    id: "isola-studioazzurro", name: "Studio Azzurro", exhibition: "Light Our Fire (INTERNI MATERIAE)",
+    venue: "Urban Up/Unipol", address: "Via De Castillia 23",
+    district: "Isola", coords: [45.4842, 9.1905], pin: "◉",
+    description: "Kinetische Leuchtfassade · 37 m Durchmesser, 492 Paneele.",
+    days: [20, 21, 22, 23, 24, 25, 26],
+    reservation: { required: false }
+  },
+  {
+    id: "isola-india-rasa", name: "Indien — Rasa", exhibition: "The Indian Collective",
+    venue: "Fabbrica Sassetti", address: "Via Sassetti 31",
+    district: "Isola", coords: [45.4872, 9.2033], pin: "🇮🇳",
+    description: "Indische Handwerkstradition, zeitgenössisch reinterpretiert (Nidhi Chandak & Varun E S).",
+    days: [20, 21, 22, 23, 24, 25, 26],
+    reservation: { required: true, link: "https://isola.design/rsvp-isoladesignfestival2026", note: "Festival-RSVP" }
+  },
+
+  // ============ TRIENNALE — NEU ============
+  {
+    id: "triennale-branzi", name: "Andrea Branzi × Toyo Ito × Fondation Cartier", exhibition: "Continuous Present (400+ Werke)",
+    venue: "Triennale Milano", address: "Viale Alemagna 6",
+    district: "Triennale", coords: [45.4728, 9.1722], pin: "B",
+    description: "Retrospektive konzipiert von Toyo Ito, co-produziert mit Fondation Cartier · 400+ Werke von Archizoom über Memphis bis anthropologisches Design · 19.3.–4.10.",
+    days: [20, 21, 22, 23, 24, 25, 26],
+    reservation: { required: true, link: "https://triennale.org/en/whats-on", note: "Museumsticket" }
+  },
+
+  // ============ DROPCITY / NoLo — NEU ============
+  {
+    id: "nolo-nike", name: "Nike", exhibition: "NikeAir_Lab (Archiv Frank Rudy)",
+    venue: "Dropcity", address: "Via Sammartini 56",
+    district: "Centro", coords: [45.4850, 9.2050], pin: "👟",
+    description: "Offenes Archiv zur Air-Technologie von Frank Rudy · Originalprototypen, Workshops, Talks.",
+    days: [20, 21, 22, 23, 24, 25, 26],
+    reservation: { required: false }
+  },
+  {
+    id: "nolo-rovereto", name: "Roberto Sironi × Sansui", exhibition: "Future Memories",
+    venue: "Stazione Rovereto (M1, verlassen)", address: "Stazione Rovereto (M1)",
+    district: "Centro", coords: [45.4890, 9.2180], pin: "🚇",
+    description: "Verlassene Metrostation als Frühstücks- / Ausstellungsort · täglich 9–12 h.",
+    days: [20, 21, 22, 23, 24, 25, 26],
+    reservation: { required: false, note: "9–12 h" }
+  },
+
+  // ============ PORTA NUOVA — NEU ============
+  {
+    id: "pn-truedesign", name: "True Design", exhibition: "Giada Montomoli + Adinne/Ahkka/Aura",
+    venue: "True Design Showroom", address: "Viale della Liberazione 15",
+    district: "Porta Nuova", coords: [45.4820, 9.1985], pin: "T",
+    description: "Ortsspezifische Installation von Giada Montomoli + neue Kollektionen (Adinne, Ahkka, Aura).",
+    days: [20, 21, 22, 23, 24, 25, 26],
+    reservation: { required: false }
+  },
+  {
+    id: "pn-greenisland", name: "Green Island", exhibition: "INTO THE WOOD",
+    venue: "Tiger Stazione Garibaldi", address: "Piazza Freud 1",
+    district: "Porta Nuova", coords: [45.4830, 9.1880], pin: "🪵",
+    description: "Handgefertigte Holzobjekte.",
+    days: [20, 21, 22, 23, 24, 25, 26],
+    reservation: { required: false }
+  },
+
+  // ============ LAMBRATE (NEU) ============
+  {
+    id: "lambrate-pet", name: "PET Design District (Erstausgabe)", exhibition: "Tierdesign / Mensch-Tier-Beziehungen",
+    venue: "GreenHub", address: "Via Feltre 28/6",
+    district: "Featured", coords: [45.4920, 9.2320], pin: "🐾",
+    description: "Erster Designdistrikt 2026 für Tierdesign, Tierwohl und Mensch-Tier-Beziehungen · vollständig neues Format.",
+    days: [20, 21, 22, 23, 24, 25, 26],
+    reservation: { required: false }
+  },
+
+  // ============ MAGENTA / ROSSANA ORLANDI (NEU) ============
+  {
+    id: "magenta-orlandi", name: "Rossana Orlandi", exhibition: "RoCollectible 2026 — The Door",
+    venue: "Galleria Rossana Orlandi", address: "Via Matteo Bandello 14/16",
+    district: "Featured", coords: [45.4635, 9.1650], pin: "🚪",
+    description: "Sammelbare und zeitgenössische Design-Panorama · Türen als archetypisches Design-/Symbolelement · 9:30–20 h.",
+    days: [20, 21, 22, 23, 24, 25, 26], highDemand: true,
+    reservation: { required: true, link: "https://www.rossanaorlandi.com", note: "Anmeldung" }
+  },
+
+  // ============ CROSS-DISTRICT ============
+  {
+    id: "cross-casartisti", name: "Doppia Firma + Homo Faber + Mazda", exhibition: "Handwerker-Designer-Kooperationen",
+    venue: "Casa degli Artisti", address: "Corso Garibaldi (Via Tommaso da Cazzaniga)",
+    district: "Brera", coords: [45.4790, 9.1855], pin: "H",
+    description: "Doppia Firma *Grand Tour in Italy* (12 Designer-Handwerker) + Homo Faber Fellowship (22 Duos, Art-Dir. Bodino) + Mazda *Design & Art Experience*.",
+    days: [20, 21, 22, 23, 24, 25, 26],
+    reservation: { required: false }
+  },
+  {
+    id: "cross-imperfetto", name: "Imperfettolab", exhibition: "SONNAMBULO LUCIDO",
+    venue: "10 Corso Como", address: "Corso Como 10",
+    district: "Porta Nuova", coords: [45.4822, 9.1870], pin: "☁",
+    description: "Cumuliforme Aggregationsinstallation.",
+    days: [20, 21, 22, 23, 24, 25, 26],
+    reservation: { required: false }
+  },
+  {
+    id: "cross-kia-permanente", name: "Kia", exhibition: "Resonance of Opposites (Vision Meta Turismo)",
+    venue: "Museo della Permanente", address: "Via Turati 34",
+    district: "Centro", coords: [45.4755, 9.1965], pin: "K",
+    description: "Kia Vision Meta Turismo-Konzept — Cross-District-Auftritt neben Salone dei Tessuti.",
+    days: [22, 23, 24, 25, 26],
+    reservation: { required: false }
+  },
+  {
+    id: "cross-korea-adi", name: "Südkorea", exhibition: "Seoul Life 2026 – Heritage Reimagined (Soban)",
+    venue: "ADI Design Museum", address: "Piazza Compasso d'Oro 1",
+    district: "ADI", coords: [45.4858, 9.1719], pin: "🇰🇷",
+    description: "Koreanischer Soban (tragbarer Esstisch) als zentrales Medium · immersives koreanisches Zuhause + Multimedia-Wand über zeitgenössisches Seoul.",
+    days: [20, 21, 22, 23, 24, 25, 26],
+    reservation: { required: true, link: "https://www.adidesignmuseum.org/en/", note: "Museumsticket" }
   }
 ];
