@@ -94,6 +94,37 @@ main { flex: 1; position: relative; overflow: hidden; }
 }
 .list-toggle svg { width: 14px; height: 14px; }
 
+.locate-btn {
+  position: absolute; right: 12px; bottom: 76px; z-index: 500;
+  background: #1a1a1a; color: #fff; border: 1px solid #3a3a3a;
+  width: 44px; height: 44px; border-radius: 22px;
+  box-shadow: 0 4px 12px rgba(0,0,0,.4); cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .15s;
+}
+.locate-btn:active { background: #2a2a2a; }
+.locate-btn.active { background: #1e88e5; border-color: #1e88e5; }
+.locate-btn.loading svg { animation: spin 1s linear infinite; }
+.locate-btn svg { width: 20px; height: 20px; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Blue dot for user position (Google Maps style) */
+.user-dot {
+  width: 18px; height: 18px; border-radius: 50%;
+  background: #1e88e5; border: 3px solid #fff;
+  box-shadow: 0 0 0 2px rgba(30,136,229,.3), 0 2px 6px rgba(0,0,0,.4);
+}
+.user-dot.pulse::before {
+  content: ""; position: absolute; top: -3px; left: -3px;
+  width: 18px; height: 18px; border-radius: 50%;
+  background: rgba(30,136,229,.4);
+  animation: pulse 2s ease-out infinite;
+}
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(3); opacity: 0; }
+}
+
 .sheet {
   position: absolute; bottom: 0; left: 0; right: 0; background: #1a1a1a;
   border-top-left-radius: 16px; border-top-right-radius: 16px;
@@ -140,6 +171,12 @@ main { flex: 1; position: relative; overflow: hidden; }
 </header>
 <main>
   <div id="map"></div>
+  <button class="locate-btn" id="locateBtn" title="Mein Standort">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="3"/>
+      <path d="M12 2v2M12 20v2M2 12h2M20 12h2"/>
+    </svg>
+  </button>
   <button class="list-toggle" id="listBtn">
     <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z"/></svg>
     Liste
@@ -359,6 +396,96 @@ sheetEl.addEventListener("touchend", e => {
   const diff = e.changedTouches[0].clientY - touchStartY;
   if (diff > 60 && sheetEl.scrollTop === 0) sheetEl.classList.remove("open");
 }, { passive: true });
+
+// ----- Geolocation (Eigener Standort) -----
+const locateBtn = document.getElementById("locateBtn");
+let userMarker = null;
+let accuracyCircle = null;
+let watchId = null;
+let followUser = false;
+
+function createUserIcon(withPulse = true) {
+  return L.divIcon({
+    html: `<div class="user-dot${withPulse ? " pulse" : ""}" style="position:relative"></div>`,
+    className: "",
+    iconSize: [18, 18],
+    iconAnchor: [9, 9]
+  });
+}
+
+function updateUserPosition(pos) {
+  const { latitude, longitude, accuracy } = pos.coords;
+  const latlng = [latitude, longitude];
+
+  if (!userMarker) {
+    userMarker = L.marker(latlng, { icon: createUserIcon(true), zIndexOffset: 1000 })
+      .addTo(map)
+      .bindPopup('<div class="popup-card"><h3>Dein Standort</h3><div class="venue">Genauigkeit: ±' + Math.round(accuracy) + ' m</div></div>');
+    accuracyCircle = L.circle(latlng, {
+      radius: accuracy,
+      color: "#1e88e5",
+      fillColor: "#1e88e5",
+      fillOpacity: 0.1,
+      weight: 1
+    }).addTo(map);
+  } else {
+    userMarker.setLatLng(latlng);
+    accuracyCircle.setLatLng(latlng).setRadius(accuracy);
+  }
+  locateBtn.classList.remove("loading");
+  locateBtn.classList.add("active");
+
+  if (followUser) {
+    map.setView(latlng, Math.max(map.getZoom(), 15), { animate: true });
+  }
+}
+
+function onLocationError(err) {
+  locateBtn.classList.remove("loading", "active");
+  let msg = "Standort nicht verfügbar.";
+  if (err.code === 1) msg = "Standort-Zugriff verweigert. Bitte in den Browser-Einstellungen erlauben.";
+  else if (err.code === 2) msg = "Standort konnte nicht ermittelt werden.";
+  else if (err.code === 3) msg = "Standort-Anfrage abgelaufen.";
+  alert(msg);
+}
+
+locateBtn.addEventListener("click", () => {
+  if (!navigator.geolocation) {
+    alert("Geolocation wird von diesem Browser nicht unterstützt.");
+    return;
+  }
+
+  // Toggle: wenn schon aktiv und User-Marker vorhanden → ausschalten
+  if (userMarker && locateBtn.classList.contains("active")) {
+    if (watchId !== null) navigator.geolocation.clearWatch(watchId);
+    watchId = null;
+    followUser = false;
+    map.removeLayer(userMarker);
+    map.removeLayer(accuracyCircle);
+    userMarker = null;
+    accuracyCircle = null;
+    locateBtn.classList.remove("active");
+    return;
+  }
+
+  followUser = true;
+  locateBtn.classList.add("loading");
+
+  // Single fix zuerst, dann kontinuierlich
+  navigator.geolocation.getCurrentPosition(
+    updateUserPosition,
+    onLocationError,
+    { enableHighAccuracy: true, timeout: 15000, maximumAge: 0 }
+  );
+  watchId = navigator.geolocation.watchPosition(
+    updateUserPosition,
+    onLocationError,
+    { enableHighAccuracy: true, maximumAge: 5000 }
+  );
+});
+
+// User deaktiviert follow-mode, wenn er die Karte manuell bewegt
+map.on("dragstart", () => { followUser = false; });
 
 // ----- Init -----
 render();
