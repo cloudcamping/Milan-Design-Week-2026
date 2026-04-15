@@ -92,6 +92,26 @@ main { flex: 1; position: relative; overflow: hidden; }
 .popup-card .days { display: flex; gap: 3px; margin-bottom: 6px; }
 .popup-card .day { font-size: 10px; padding: 2px 6px; border-radius: 8px; background: #2a2a2a; color: #888; }
 .popup-card .day.open { background: #2a4a2a; color: #80c880; }
+.popup-card .transit { font-size: 11px; color: #aaa; margin-bottom: 8px; display: flex; flex-wrap: wrap; align-items: center; gap: 4px; }
+
+/* Linien-Chips (Metro) */
+.line-chip {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 1px 6px; border-radius: 10px; font-size: 10px; font-weight: 700;
+  min-width: 22px; letter-spacing: .2px; margin-right: 3px;
+}
+.station-name { color: #ddd; font-weight: 500; }
+.station-dist { color: #888; font-size: 10px; margin-left: 3px; }
+.station-sep { color: #444; margin: 0 5px; }
+
+/* Metro-Station-Marker auf Karte (klein, dezent) */
+.metro-pin {
+  display: flex; align-items: center; justify-content: center;
+  min-width: 18px; height: 18px; padding: 0 4px; border-radius: 9px;
+  border: 2px solid #fff; box-shadow: 0 1px 3px rgba(0,0,0,.5);
+  font-size: 9px; font-weight: 700; white-space: nowrap;
+}
+.metro-pin.multi { background: linear-gradient(135deg, var(--c1) 50%, var(--c2) 50%); }
 
 .list-toggle {
   position: absolute; right: 12px; bottom: 24px; z-index: 500;
@@ -249,6 +269,7 @@ main { flex: 1; position: relative; overflow: hidden; }
   </div>
 </main>
 
+<script src="stations.js"></script>
 <script src="data.js"></script>
 <script>
 const districtColors = {
@@ -272,6 +293,7 @@ const state = {
   day: "all", // "20", "21", "22", "23", "all"
   district: "all",
   reservation: "all", // "required", "walkin", "demand", "favorites", "all"
+  showMetro: false
 };
 
 // ----- Favorites (localStorage) -----
@@ -330,12 +352,24 @@ filters.forEach(f => {
   btn.dataset.filterVal = f.val;
   btn.onclick = () => {
     state[f.key] = f.val;
-    document.querySelectorAll(".chip").forEach(c => c.classList.remove("active"));
+    document.querySelectorAll(".chip:not(.toggle-chip)").forEach(c => c.classList.remove("active"));
     btn.classList.add("active");
     render();
   };
   filtersEl.appendChild(btn);
 });
+
+// Metro-Toggle (separat von Reservation-Filter)
+const metroBtn = document.createElement("button");
+metroBtn.className = "chip toggle-chip";
+metroBtn.textContent = "🚇 Metro-Stationen";
+metroBtn.onclick = () => {
+  state.showMetro = !state.showMetro;
+  metroBtn.classList.toggle("active", state.showMetro);
+  if (state.showMetro) metroLayer.addTo(map);
+  else map.removeLayer(metroLayer);
+};
+filtersEl.appendChild(metroBtn);
 
 // ----- Map -----
 const map = L.map("map", {
@@ -358,6 +392,31 @@ L.marker([45.4890, 9.2180], { icon: hotelIcon }).addTo(map)
   .bindPopup('<div class="popup-card"><h3>Unterkunft</h3><div class="venue">Viale Monza 177/3 · Zone Loreto</div></div>');
 
 let markerLayer = L.layerGroup().addTo(map);
+let metroLayer = L.layerGroup();
+
+function buildMetroMarkers() {
+  metroLayer.clearLayers();
+  STATIONS.forEach(s => {
+    const primaryLine = s.lines[0];
+    const meta = METRO_LINES[primaryLine];
+    const color = meta ? meta.color : "#555";
+    const textColor = primaryLine === "M3" ? "#000" : "#fff";
+    const label = s.lines.filter(l => l !== "BUS" && l !== "FN").join("") || s.lines[0];
+    const icon = L.divIcon({
+      html: `<div class="metro-pin" style="background:${color};color:${textColor};">${label}</div>`,
+      className: "",
+      iconSize: [24, 18],
+      iconAnchor: [12, 9]
+    });
+    const marker = L.marker(s.coords, { icon, zIndexOffset: -100 });
+    marker.bindPopup(
+      `<div class="popup-card"><h3>${s.name}</h3><div style="display:flex;gap:4px;margin-top:4px;">${s.lines.map(l => stationLineChip(l)).join("")}</div></div>`,
+      { minWidth: 160 }
+    );
+    metroLayer.addLayer(marker);
+  });
+}
+buildMetroMarkers();
 
 function makeMarker(ev) {
   const color = districtColors[ev.district] || "#666";
@@ -400,6 +459,7 @@ function popupHtml(ev) {
   const days = ev.days && ev.days.length
     ? `<div class="days">${[20, 21, 22, 23, 24, 25, 26].map(d => `<span class="day${ev.days.includes(d) ? " open" : ""}">${d}</span>`).join("")}</div>`
     : "";
+  const transit = `<div class="transit">🚇 ${stationsLine(ev.coords)}</div>`;
   const favActive = isFavorite(ev.id);
   const buttons = [
     `<button class="fav${favActive ? " active" : ""}" data-fav-id="${ev.id}">${favActive ? "★ Favorit" : "☆ Merken"}</button>`,
@@ -415,6 +475,7 @@ function popupHtml(ev) {
       <div class="desc">${ev.description || ""}</div>
       ${days}
       <div class="venue">📍 ${ev.venue}, ${ev.address}</div>
+      ${transit}
       <div class="reservation ${resClass}">${resText}</div>
       <div class="actions">${buttons.join("")}</div>
     </div>`;
@@ -513,6 +574,7 @@ function listItemHtml(ev, color, isOpen) {
           <div class="kv"><span class="kv-label">Venue</span><span class="kv-val">${ev.venue}</span></div>
           <div class="kv"><span class="kv-label">Adresse</span><span class="kv-val">${ev.address}</span></div>
           <div class="kv"><span class="kv-label">Distrikt</span><span class="kv-val">${ev.district}</span></div>
+          <div class="kv"><span class="kv-label">🚇 ÖPNV</span><span class="kv-val" style="display:flex;flex-wrap:wrap;align-items:center;gap:3px;">${stationsLine(ev.coords)}</span></div>
           <div class="kv"><span class="kv-label">Öffnungstage</span><span class="kv-val" style="display:flex;gap:3px;flex-wrap:wrap;">${days}</span></div>
           <div class="reservation ${resClass}">${resIcon} ${resText}</div>
           <div class="list-actions">${actions.join("")}</div>
