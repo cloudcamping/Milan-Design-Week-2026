@@ -1,0 +1,17 @@
+{
+  "name": "Milan Design Week 2026",
+  "short_name": "MDW 2026",
+  "description": "Fuorisalone 2026 — Events-Map & Navigation",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#1a1a1a",
+  "theme_color": "#1a1a1a",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
