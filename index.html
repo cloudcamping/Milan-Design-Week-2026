@@ -14,7 +14,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&family=Inria+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css">
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <style>
 :root {
   --mist: #F9F8FD;
@@ -481,6 +483,34 @@ main { flex: 1; position: relative; overflow: hidden; }
   padding: 48px 24px; font-size: 0.85rem; font-style: italic;
 }
 
+/* Marker-Cluster (JB Brand) */
+.marker-cluster {
+  background: transparent !important;
+}
+.marker-cluster div {
+  background: var(--heading) !important;
+  color: var(--mist) !important;
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 12px !important;
+  width: 34px !important; height: 34px !important;
+  margin-left: -1px !important; margin-top: -1px !important;
+  border-radius: 50% !important;
+  display: flex !important; align-items: center !important; justify-content: center !important;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.18) !important;
+  border: 2px solid var(--mist) !important;
+  line-height: 1 !important;
+}
+.marker-cluster-small div { background: var(--strong) !important; }
+.marker-cluster-medium div { background: var(--heading) !important; }
+.marker-cluster-large div { background: var(--red) !important; }
+
+/* Spiderfy-Linien */
+.leaflet-cluster-anim .leaflet-marker-icon,
+.leaflet-cluster-anim .leaflet-marker-shadow {
+  transition: transform 0.25s ease-out, opacity 0.25s ease-out !important;
+}
+
 .leaflet-popup-content { margin: 14px !important; }
 </style>
 </head>
@@ -640,7 +670,27 @@ const hotelIcon = L.divIcon({
 L.marker([45.4890, 9.2180], { icon: hotelIcon }).addTo(map)
   .bindPopup('<div class="popup-card"><h3>Unterkunft</h3><div class="venue">Viale Monza 177/3, Zone Loreto</div></div>');
 
-let markerLayer = L.layerGroup().addTo(map);
+let markerLayer = L.markerClusterGroup({
+  maxClusterRadius: 28,           // Nur sehr nahe Pins clustern
+  spiderfyOnMaxZoom: true,        // Bei Max-Zoom auffächern
+  showCoverageOnHover: false,     // Kein Hover-Polygon
+  zoomToBoundsOnClick: true,      // Erst reinzoomen, dann spiderfyen
+  spiderfyDistanceMultiplier: 1.8,// Abstand beim Auffächern
+  disableClusteringAtZoom: 18,    // Ab Zoom 18 immer einzeln
+  animate: true,
+  animateAddingMarkers: false,
+  iconCreateFunction: function(cluster) {
+    const count = cluster.getChildCount();
+    let size = 'small';
+    if (count >= 10) size = 'large';
+    else if (count >= 4) size = 'medium';
+    return L.divIcon({
+      html: '<div>' + count + '</div>',
+      className: 'marker-cluster marker-cluster-' + size,
+      iconSize: [36, 36]
+    });
+  }
+}).addTo(map);
 let metroLayer = L.layerGroup();
 let routeLayer = L.layerGroup().addTo(map);
 
@@ -711,6 +761,7 @@ function makeMarker(ev) {
     popupAnchor: [0, -32]
   });
   const marker = L.marker(ev.coords, { icon });
+  marker._evId = ev.id; // ID-Tag für Cluster-Lookup
   marker.bindPopup(popupHtml(ev), { minWidth: 260, maxWidth: 300 });
   marker.on("click", () => {
     document.getElementById("sheet").classList.remove("open");
@@ -891,13 +942,19 @@ function wireListInteractions() {
       e.stopPropagation();
       const ev = EVENTS.find(x => x.id === el.dataset.showId);
       if (!ev) return;
-      map.flyTo(ev.coords, 16, { duration: 0.6 });
       document.getElementById("sheet").classList.remove("open");
-      setTimeout(() => {
-        markerLayer.eachLayer(m => {
-          if (m.getLatLng().lat === ev.coords[0] && m.getLatLng().lng === ev.coords[1]) m.openPopup();
+      // Marker finden und via Cluster sichtbar machen
+      let targetMarker = null;
+      markerLayer.eachLayer(m => {
+        if (m._evId === ev.id) targetMarker = m;
+      });
+      if (targetMarker) {
+        markerLayer.zoomToShowLayer(targetMarker, () => {
+          targetMarker.openPopup();
         });
-      }, 650);
+      } else {
+        map.flyTo(ev.coords, 17, { duration: 0.6 });
+      }
     };
   });
 }
